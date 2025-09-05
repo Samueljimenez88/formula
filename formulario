@@ -1,0 +1,64 @@
+from logging import info
+import tkinter as tk
+
+def mostrardatos():
+    nombre = txtnombre.get()
+    apellido = txtapellido.get()
+    email = txtemail.get()
+    telefono = txttelefono.get()
+    tk.Label(info, text=f"Nombre: {nombre}").pack()
+    tk.Label(info, text=f"Apellido: {apellido}").pack()
+    tk.Label(info, text=f"Email: {email}").pack()
+    tk.Label(info, text=f"Teléfono: {telefono}").pack()
+    txtnombre.delete(0, tk.END)
+    txtapellido.delete(0, tk.END)
+    txtemail.delete(0, tk.END)
+    txttelefono.delete(0, tk.END)
+
+
+
+ventana = tk.Tk()
+
+# Configuracion de la ventana
+ancho = ventana.winfo_screenwidth()
+alto = ventana.winfo_screenheight()
+
+ventana.geometry(f"{ancho}x{alto}")
+
+ventana.title("App con Grid")
+ventana.resizable(False, False)
+
+# Definicion de etiquetas y campos de entrada
+inicio = tk.Label(ventana, text="Formulario de registro", bg="blue", font=("Arial", 24))
+lblnombre = tk.Label(ventana, text="Nombre:")
+lblapellido = tk.Label(ventana, text="Apellido:")
+lblemail = tk.Label(ventana, text="Email:")
+lbltelefono = tk.Label(ventana, text="Teléfono:")
+
+# Ubicacion de cajas de texto y etiquetas usando grid
+inicio.grid(row=0, column=0, columnspan=2, pady=10)
+lblnombre.grid(row=1, column=0, pady=2, )
+lblapellido.grid(row=2, column=0, pady=2, )
+lblemail.grid(row=3, column=0, pady=2, )
+lbltelefono.grid(row=4, column=0, pady=2,)
+
+# Definicion de campos de entrada
+txtnombre = tk.Entry(ventana, width=30)
+txtapellido = tk.Entry(ventana, width=30)
+txtemail = tk.Entry(ventana, width=30)
+txttelefono = tk.Entry(ventana, width=30)
+
+# Ubicacion campos de entrada usando grid
+txtnombre.grid(row=1, column=1, pady=2)
+txtapellido.grid(row=2, column=1, pady=2)
+txtemail.grid(row=3, column=1, pady=2)
+txttelefono.grid(row=4, column=1, pady=2)
+
+btnGuardar = tk.Button(ventana, text="Guardar", command=mostrardatos).grid(row=5, column=0, columnspan=2, pady=10)
+
+
+info = tk.Label(ventana,text="",fg="green")
+info.grid(row=6,column=0,columnspan=2)
+ventana.mainloop()
+
+
